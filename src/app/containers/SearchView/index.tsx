@@ -3,9 +3,7 @@ import searchIcon from "../../../assets/images/icons/search.png";
 import { SwitchIcon } from "../SwitcherView/components/SwitchIcon";
 import { Search } from "../../components/Search/";
 import { useMode } from "../../../hooks/useMode"; 
-
-type Dispatch<A> = (value: A) => void;
-type SetStateAction<S> = S | ((prevState: S) => S);
+import {Dispatch,  SetStateAction} from "../../../utils"
 
 interface ISearchViewProps {
   setSearchText: Dispatch<SetStateAction<string>>;

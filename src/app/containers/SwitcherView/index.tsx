@@ -4,14 +4,12 @@ import { SwitchIcon } from "./components/SwitchIcon";
 import { useMode } from "../../../hooks/useMode";
 import { SearchView } from "../SearchView/";
 import { useWindowSize } from "../../../hooks/useWindowSize";
+import {Dispatch, SetStateAction} from '../../../utils/'
 
 import lightGridIcon from "../../../assets/images/icons/lightGrid.png";
 import darkGridIcon from "../../../assets/images/icons/darkGrid.png";
 import lightListIcon from "../../../assets/images/icons/lightList.png";
 import darkListIcon from "../../../assets/images/icons/darkList.png";
-
-type Dispatch<A> = (value: A) => void;
-type SetStateAction<S> = S | ((prevState: S) => S);
 
 interface ISwitcherViewProps {
   mode: string;
