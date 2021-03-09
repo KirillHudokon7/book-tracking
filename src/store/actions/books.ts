@@ -1,7 +1,9 @@
 import {
-  LOAD_BOOKS_PENDING, LOAD_BOOKS_FULFILLED, LOAD_BOOKS_REJECTED,
-} from '../actionTypes/books';
-import { books } from '../config';
+  LOAD_BOOKS_PENDING,
+  LOAD_BOOKS_FULFILLED,
+  LOAD_BOOKS_REJECTED,
+} from "../actionTypes/books";
+import { books } from "../config";
 
 export const loadBooks = () => async (dispatch) => {
   try {

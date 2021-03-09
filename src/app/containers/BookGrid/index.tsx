@@ -1,8 +1,8 @@
-import React from 'react';
-import { BookItem } from './BookItem';
-import { BookWrapper } from './components/BookWrapper';
-import { IBookData } from '../../../store/actionTypes/books';
-import { IBookState } from '../Books';
+import React from "react";
+import { BookItem } from "./BookItem";
+import { BookWrapper } from "./components/BookWrapper";
+import { IBookData } from "../../../store/actionTypes/books";
+import { IBookState } from "../Books";
 
 interface IBookGridProps {
   books: IBookData[];
@@ -23,7 +23,7 @@ export const BookGrid: React.FC<IBookGridProps> = ({ books, handleOpen }) => {
             description={book.description}
             handleOpen={handleOpen}
           />
-        )
+        );
       })}
     </BookWrapper>
   );

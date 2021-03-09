@@ -2,28 +2,32 @@ import {
   LOAD_BOOKS_PENDING,
   LOAD_BOOKS_FULFILLED,
   LOAD_BOOKS_REJECTED,
-  IBooksState, LoadBooksActionTypes,
-} from '../actionTypes/books';
+  IBooksState,
+  LoadBooksActionTypes,
+} from "../actionTypes/books";
 
 export const initialState: IBooksState = {
   data: {
-    byId : {},
-    allIds : [],
+    byId: {},
+    allIds: [],
   },
   loading: false,
   error: null,
 };
 
-export const booksReducer = (state = initialState, action: LoadBooksActionTypes): IBooksState => {
-  switch(action.type) {
+export const booksReducer = (
+  state = initialState,
+  action: LoadBooksActionTypes
+): IBooksState => {
+  switch (action.type) {
     case LOAD_BOOKS_PENDING:
       return {
         ...state,
         loading: true,
         error: null,
         data: {
-          byId : {},
-          allIds : [],
+          byId: {},
+          allIds: [],
         },
       };
     case LOAD_BOOKS_FULFILLED:
@@ -52,4 +56,4 @@ export const booksReducer = (state = initialState, action: LoadBooksActionTypes)
     default:
       return state;
   }
-}
+};

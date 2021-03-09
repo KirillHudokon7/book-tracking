@@ -1,15 +1,18 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 const colors = {
   dark: {
-    active: '#1E1E1E',
-    inactive: '#000',
+    active: "#1E1E1E",
+    inactive: "#000",
   },
   light: {
-    active: '#F0F0F0',
-    inactive: '#fff',
-  }
-}
+    active: "#F0F0F0",
+    inactive: "#fff",
+  },
+  lightGrey: {
+    active: "#F6F6F6",
+  },
+};
 
 interface SwitchIconProps {
   readonly active: string;

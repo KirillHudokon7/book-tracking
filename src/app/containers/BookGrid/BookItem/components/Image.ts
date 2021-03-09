@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const Image = styled.img`
   @media (max-width: 768px) {

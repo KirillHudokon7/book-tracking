@@ -1,7 +1,7 @@
-import React from 'react';
-import styled from 'styled-components';
+import React from "react";
+import styled from "styled-components";
 import Modal from "@material-ui/core/Modal";
-import closeIcon from '../../../assets/images/icons/close.jpg';
+import closeIcon from "../../../assets/images/icons/close.jpg";
 
 const Paper = styled.div`
   position: absolute;
@@ -11,7 +11,7 @@ const Paper = styled.div`
   display: flex;
   flex-direction: column;
   padding: 18px;
-  background: #FFFFFF;
+  background: #ffffff;
   border-radius: 24px;
   outline: none;
   max-width: 660px;
@@ -28,18 +28,15 @@ interface ISimpleModalProps {
   children: React.ReactNode;
 }
 
-export const SimpleModal = ({ open, handleClose, children }: ISimpleModalProps) => {
+export const SimpleModal = ({
+  open,
+  handleClose,
+  children,
+}: ISimpleModalProps) => {
   return (
-    <Modal
-      open={open}
-      onClose={handleClose}
-    >
+    <Modal open={open} onClose={handleClose}>
       <Paper>
-        <CloseIcon
-          src={closeIcon}
-          alt="Close icon"
-          onClick={handleClose}
-        />
+        <CloseIcon src={closeIcon} alt="Close icon" onClick={handleClose} />
         {children}
       </Paper>
     </Modal>

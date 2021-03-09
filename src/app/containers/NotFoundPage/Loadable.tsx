@@ -1,7 +1,7 @@
-import React, { lazy, Suspense } from 'react';
-import { Loader } from '../../components/Loader';
+import React, { lazy, Suspense } from "react";
+import { Loader } from "../../components/Loader";
 
-const Index = lazy(() => import('./index'));
+const Index = lazy(() => import("./index"));
 
 export const NotFoundPage = () => {
   return (

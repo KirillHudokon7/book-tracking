@@ -1,5 +1,5 @@
-import React from 'react';
-import { BookItem } from './BookItem';
+import React from "react";
+import { BookItem } from "./BookItem";
 import { IBookData } from "../../../store/actionTypes/books";
 import { IBookState } from "../Books";
 
@@ -21,7 +21,7 @@ export const BookList: React.FC<IBookGridProps> = ({ books, handleOpen }) => {
             description={book.description}
             handleOpen={handleOpen}
           />
-        )
+        );
       })}
     </div>
   );

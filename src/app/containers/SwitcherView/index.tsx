@@ -1,24 +1,38 @@
-import React from 'react';
-import { SwitcherWrapper } from './components/SwitcherWrapper';
-import { SwitchIcon } from './components/SwitchIcon';
-import lightGridIcon from '../../../assets/images/icons/lightGrid.png';
-import darkGridIcon from '../../../assets/images/icons/darkGrid.png';
-import lightListIcon from '../../../assets/images/icons/lightList.png';
-import darkListIcon from '../../../assets/images/icons/darkList.png';
-import { useMode } from '../../../hooks/useMode';
+import React from "react";
+import { SwitcherWrapper } from "./components/SwitcherWrapper";
+import { SwitchIcon } from "./components/SwitchIcon";
+import { useMode } from "../../../hooks/useMode";
+import { SearchView } from "../SearchView/";
+import { useWindowSize } from "../../../hooks/useWindowSize";
+
+import lightGridIcon from "../../../assets/images/icons/lightGrid.png";
+import darkGridIcon from "../../../assets/images/icons/darkGrid.png";
+import lightListIcon from "../../../assets/images/icons/lightList.png";
+import darkListIcon from "../../../assets/images/icons/darkList.png";
+
+type Dispatch<A> = (value: A) => void;
+type SetStateAction<S> = S | ((prevState: S) => S);
 
 interface ISwitcherViewProps {
   mode: string;
+  setSearchText: Dispatch<SetStateAction<string>>;
   onGridMode: () => void;
   onListMode: () => void;
 }
 
-export const SwitcherView: React.FC<ISwitcherViewProps> = ({ mode, onGridMode, onListMode }) => {
+export const SwitcherView: React.FC<ISwitcherViewProps> = ({
+  mode,
+  setSearchText,
+  onGridMode,
+  onListMode,
+}) => {
+  const { width } = useWindowSize();
   const { mode: themeMode } = useMode();
-  const gridActivation = mode === 'grid' ? 'active' : 'inactive';
-  const listActivation = mode === 'grid' ? 'inactive' : 'active';
-  const gridIcon = themeMode === 'dark' ? lightGridIcon : darkGridIcon;
-  const listIcon = themeMode === 'dark' ? lightListIcon : darkListIcon;
+
+  const gridActivation = mode === "grid" ? "active" : "inactive";
+  const listActivation = mode === "grid" ? "inactive" : "active";
+  const gridIcon = themeMode === "dark" ? lightGridIcon : darkGridIcon;
+  const listIcon = themeMode === "dark" ? lightListIcon : darkListIcon;
 
   return (
     <SwitcherWrapper>
@@ -36,6 +50,9 @@ export const SwitcherView: React.FC<ISwitcherViewProps> = ({ mode, onGridMode, o
         src={listIcon}
         alt="List icon"
       />
+      {width && width > 768 && (
+        <SearchView setSearchText={setSearchText}/>
+      )}
     </SwitcherWrapper>
-  )
-}
+  );
+};

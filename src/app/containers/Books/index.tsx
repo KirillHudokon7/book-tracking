@@ -1,23 +1,23 @@
-import React, { useEffect, useState, useCallback } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { createFilter } from 'react-search-input';
-import { loadBooks } from '../../../store/actions/books';
-import { Loader } from '../../components/Loader';
-import { AppState } from '../../../store/configureStore';
-import { Wrapper } from './components/Wrapper';
-import { TitleWrapper } from './components/TitleWrapper';
-import { Title } from './components/Title';
-import { SwitcherModes } from '../SwitcherModesMobile';
-import { SwitcherView } from '../SwitcherView';
-import { BookGrid } from '../BookGrid';
-import { BookList } from '../BookList';
-import { SimpleModal } from '../../components/SimpleModal';
-import { BookCard } from '../BookCard';
-import { Search } from '../../components/Search';
-import { useWindowSize } from '../../../hooks/useWindowSize';
-import { useMode } from '../../../hooks/useMode';
+import React, { useEffect, useState, useCallback } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { createFilter } from "react-search-input";
+import { loadBooks } from "../../../store/actions/books";
+import { Loader } from "../../components/Loader";
+import { AppState } from "../../../store/configureStore";
+import { Wrapper } from "./components/Wrapper";
+import { TitleWrapper } from "./components/TitleWrapper";
+import { Title } from "./components/Title";
+import { SwitcherModes } from "../SwitcherModesMobile";
+import { SwitcherView } from "../SwitcherView";
+import { BookGrid } from "../BookGrid";
+import { BookList } from "../BookList";
+import { SimpleModal } from "../../components/SimpleModal";
+import { BookCard } from "../BookCard";
+import { Search } from "../../components/Search";
+import { useWindowSize } from "../../../hooks/useWindowSize";
+import { useMode } from "../../../hooks/useMode";
 
-const KEYS_TO_FILTERS = ['title', 'author', 'genre'];
+const KEYS_TO_FILTERS = ["title", "author", "genre"];
 
 export interface IBookState {
   image: string;
@@ -33,28 +33,30 @@ export const Books = () => {
   const { loading, data } = useSelector((state: AppState) => state.books);
   const booksIds = data.allIds;
   const books = data.byId;
-  const [switchMode, setSwitchMode] = useState('grid');
+  const [switchMode, setSwitchMode] = useState("grid");
   const [open, setOpen] = useState(false);
   const [selectedBook, setSelectedBook] = useState<IBookState>({
-    image: '',
-    title: '',
-    author: '',
-    description: '',
+    image: "",
+    title: "",
+    author: "",
+    description: "",
   });
-  const [searchText, setSearchText] = useState('');
+  const [searchText, setSearchText] = useState("");
   const transformedBooks = booksIds.map((bookId) => books[bookId]);
-  const filteredBooks = transformedBooks.filter(createFilter(searchText, KEYS_TO_FILTERS));
-
+  const filteredBooks = transformedBooks.filter(
+    createFilter(searchText, KEYS_TO_FILTERS)
+  );
+  console.log(searchText);
   useEffect(() => {
     dispatch(loadBooks());
   }, []);
 
   const handleGridMode = useCallback(() => {
-    setSwitchMode('grid');
+    setSwitchMode("grid");
   }, []);
 
   const handleListMode = useCallback(() => {
-    setSwitchMode('list');
+    setSwitchMode("list");
   }, []);
 
   const handleOpen = ({ image, title, author, description }: IBookState) => {
@@ -75,33 +77,25 @@ export const Books = () => {
   return (
     <Wrapper>
       {loading && <Loader />}
-      {width && width < 768 && (
-        <SwitcherModes />
-      )}
+      {width && width < 768 && <SwitcherModes />}
       <TitleWrapper>
         <Title mode={themeMode}>Book Library</Title>
         <SwitcherView
           mode={switchMode}
+          setSearchText={setSearchText}
           onGridMode={handleGridMode}
           onListMode={handleListMode}
         />
       </TitleWrapper>
-      <Search mode={themeMode} onChange={setSearchText} />
-      {switchMode === 'grid' ? (
-        <BookGrid
-          books={filteredBooks}
-          handleOpen={handleOpen}
-        />
-      ) : (
-        <BookList
-          books={filteredBooks}
-          handleOpen={handleOpen}
-        />
+      {width && width < 768 && (
+        <Search mode={themeMode} onChange={setSearchText} />
       )}
-      <SimpleModal
-        open={open}
-        handleClose={handleClose}
-      >
+      {switchMode === "grid" ? (
+        <BookGrid books={filteredBooks} handleOpen={handleOpen} />
+      ) : (
+        <BookList books={filteredBooks} handleOpen={handleOpen} />
+      )}
+      <SimpleModal open={open} handleClose={handleClose}>
         <BookCard
           image={selectedBook.image}
           title={selectedBook.title}
